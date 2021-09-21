@@ -1,0 +1,3 @@
+*.sql
+data/*
+!data/.gitkeep

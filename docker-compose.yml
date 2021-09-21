@@ -1,0 +1,28 @@
+version: '3.2'
+services:
+  odontosig_database:
+    image: mariadb:10.6.3-focal
+    container_name: personal-db
+    environment:
+      MYSQL_ROOT_PASSWORD: my2021
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./init-db:/docker-entrypoint-initdb.d
+      - ./conf.d:/etc/mysql/conf.d
+    networks:
+      - personal
+    restart: always
+
+  personal_cache:
+    image: redis:6.2.5-alpine
+    container_name: personal-cache
+    networks:
+      - personal
+    restart: always
+
+networks:
+  personal:
+    external:
+      name: personal
