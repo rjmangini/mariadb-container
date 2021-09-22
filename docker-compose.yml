@@ -10,7 +10,6 @@ services:
     volumes:
       - ./data:/var/lib/mysql
       - ./init-db:/docker-entrypoint-initdb.d
-      - ./conf.d:/etc/mysql/conf.d
     networks:
       - personal
     restart: always
